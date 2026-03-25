@@ -1,5 +1,6 @@
 ## INSTALL ##
 
+
 # install KIND
 [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.31.0/kind-linux-amd64
 
@@ -34,4 +35,23 @@ sudo systemctl enable --now docker
 kind create cluster --name pg
 kubectl get nodes
 kubectl get -A pods
+
+
+# CNPG Operator
+kubectl apply --server-side -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.28/releases/cnpg-1.28.1.yaml
+kubectl get nodes
+kubectl get -A pods
+kubectl get deployment -n cnpgsystem cnpg-controller-manager
+
+# CNPG plugin
+curl -L https://github.com/cloudnative-pg/cloudnativepg/releases/download/v1.28.0/kubectl-cnpg_1.28.1_linux_x86_64.rpm --output kube-plugin.rpm
+sudo dnf --disablerepo=* localinstall -y kube-plugin.rpm
+
+# Deploy PG cluster
+curl -o cluster-example.yaml https://cloudnativepg.io/documentation/1.28/samples/cluster-example.yaml
+cat cluster-example.yaml
+
+kubectl apply -f cluster-example.yaml
+kubectl get pods -o wide
+kubectl cnpg status cluster-example
 
