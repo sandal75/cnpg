@@ -32,5 +32,7 @@ sudo systemctl enable --now docker
 
 # create cluster
 kind create cluster --name pg
-kubectl cluster-info
-~
+kubectl get nodes
+kubectl get -A pods
+
+
