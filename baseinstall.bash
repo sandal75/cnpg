@@ -1,3 +1,7 @@
+## "Scripted" setup of kubernetes cluster for cllound native PG
+## Run as root !
+
+
 ## INSTALL ##
 
 
