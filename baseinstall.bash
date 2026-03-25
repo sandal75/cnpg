@@ -44,14 +44,25 @@ kubectl get -A pods
 kubectl get deployment -n cnpgsystem cnpg-controller-manager
 
 # CNPG plugin
-curl -L https://github.com/cloudnative-pg/cloudnativepg/releases/download/v1.28.0/kubectl-cnpg_1.28.1_linux_x86_64.rpm --output kube-plugin.rpm
-sudo dnf --disablerepo=* localinstall -y kube-plugin.rpm
+curl -sSfL \
+  https://github.com/cloudnative-pg/cloudnative-pg/raw/main/hack/install-cnpg-plugin.sh | \
+  sudo sh -s -- -b /usr/local/bin
+
+#curl -L https://github.com/cloudnative-pg/cloudnativepg/releases/download/v1.28.0/kubectl-cnpg_1.28.1_linux_x86_64.rpm --output kube-plugin.rpm
+#sudo dnf --disablerepo=* localinstall -y kube-plugin.rpm
 
 # Deploy PG cluster
-curl -o cluster-example.yaml https://cloudnativepg.io/documentation/1.28/samples/cluster-example.yaml
+curl -o cluster-example.yaml https://cloudnative-pg.io/docs/assets/files/cluster-example-0a961e59ba2e2313c983c3386be1d7e7.yaml
 cat cluster-example.yaml
 
 kubectl apply -f cluster-example.yaml
 kubectl get pods -o wide
+echo "When 'kubectl get pods -o wide' show 3 cluster nodes running"
+echo "you can check status with:"
+echo "kubectl cnpg status cluster-example"
+
+read -p "Press enter to continue"
+
 kubectl cnpg status cluster-example
+
 
