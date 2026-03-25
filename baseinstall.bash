@@ -35,4 +35,3 @@ kind create cluster --name pg
 kubectl get nodes
 kubectl get -A pods
 
-
