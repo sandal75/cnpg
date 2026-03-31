@@ -3,6 +3,7 @@
 ## Test setup:
 # Oracle Virtual Box
 # 1 Virtual Linux (CentOS 9 - redhat deviant) with 4 virtual CPUs and 8 GB RAM
+#   https://www.osboxes.org/centos/
 # Network: NAT, port forward 1333 to 22 (connect to localhost, port 1333 to logon)
 
 ## Other things to remember/nice to have
