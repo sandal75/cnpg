@@ -1,0 +1,40 @@
+###GIT
+  git clone https://github.com/sandal75/cnpg.git
+#only used by ASJ:
+  git remote set-url origin https://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@github.com/sandal75/cnpg
+
+
+### KUBECTL
+# pods
+  kubectl get pods
+  kubectl get -A pods
+
+## CNPG specific
+  kubectl cnpg --help
+  kubectl cnpg status cluster-new  (--verbose)
+  kubectl cnpg hibernate on cluster-example
+  kubectl cnpg destroy cluster-example -k
+  kubectl cnpg promote cluster-new 2
+    
+# Get password for user on CNPG deployment
+    kubectl get secret cluster-new-app -o 'jsonpath={.data.password}' | base64 -d; echo ""
+  
+# start prompt on specific pod:
+  kubectl exec -ti cluster-example-1 -- /bin/bash
+
+# PG Admin in a pod (never had this working, probably due to port forwarding)
+  kubectl rollout status deployment cluster-new-pgadmin4
+  kubectl port-forward deployment/cluster-new-pgadmin4 8080:80
+
+#
+
+### PG
+# connect to remote database
+  psql -h 127.0.0.1 -p 5432 sslmode=disable -U app
+
+### MISC
+# Disable Linux firewall
+  sudo systemctl status firewalld
+  sudo systemctl disable firewalld
+  sudo systemctl stop firewalld
+  sudo systemctl status firewalld
