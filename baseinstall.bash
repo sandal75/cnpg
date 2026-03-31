@@ -1,5 +1,9 @@
 ## "Scripted" setup of kubernetes cluster for cllound native PG
-## Run as root !
+
+## Test setup:
+# Oracle Virtual Box
+# 1 Virtual Linux (CentOS 9 - redhat deviant) with 4 virtual CPUs and 8 GB RAM
+# Network: NAT, port forward 1333 to 22 (connect to localhost, port 1333 to logon)
 
 ## Other things to remember/nice to have
 #
