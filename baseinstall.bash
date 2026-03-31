@@ -1,6 +1,13 @@
 ## "Scripted" setup of kubernetes cluster for cllound native PG
 ## Run as root !
 
+## Other things to remember/nice to have
+#
+# sudo dnf install git
+#
+# make link to psql in newly installed postgresql server from /usr/local/bin  (ln -s)
+#
+#
 
 ## INSTALL ##
 
